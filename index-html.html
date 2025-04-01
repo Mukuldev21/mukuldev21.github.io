@@ -4,260 +4,849 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mukul Dev Mahato - SDET Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #818cf8;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-color: #64748b;
+            --success-color: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/400') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .profile-info h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .contact-links a {
+            color: white;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            text-decoration: none;
+        }
+        
+        .contact-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.1);
+        }
+        
+        /* Sections */
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .about-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .skill-tag {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--dark-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-tag i {
+            color: var(--primary-color);
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #818cf8, #4f46e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .project-info p {
+            color: var(--gray-color);
+            margin-bottom: 1rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tag {
+            background: #f1f5f9;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--gray-color);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .primary-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .secondary-btn {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .project-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #e2e8f0;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 0 40px 50px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 0;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            border-width: 10px;
+            border-style: solid;
+            top: 0;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            border-color: transparent transparent transparent white;
+            right: -20px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            border-color: transparent white transparent transparent;
+            left: -20px;
+        }
+        
+        .timeline-date {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .timeline-content h4 {
+            color: var(--gray-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-content ul {
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::after {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd)::after {
+                right: auto;
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after {
+                border-color: transparent white transparent transparent;
+                right: auto;
+                left: -20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="logo">Mukul Dev Mahato</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
-        </div>
-    </nav>
-
-    <header id="home">
-        <div class="container">
-            <div class="header-content">
-                <h1>Mukul Dev Mahato</h1>
-                <h2>Software Development Engineer in Test (SDET)</h2>
-                <p>Test Automation | CI/CD | API Testing | Cloud | Agile | DevOps</p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn primary-btn">Contact Me</a>
-                    <a href="#projects" class="btn secondary-btn">View Projects</a>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="/api/placeholder/150/150" alt="Mukul Dev Mahato">
+                </div>
+                <div class="profile-info">
+                    <h1>Mukul Dev Mahato</h1>
+                    <h2>Software Development Engineer in Test (SDET)</h2>
+                    <div class="contact-links">
+                        <a href="https://linkedin.com/in/mukul-dev-a02108198" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Mukuldev21" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="mailto:mukul.com12@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:7033380645"><i class="fas fa-phone"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
-
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="#about"><i class="fas fa-user"></i> About</a>
+                <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+                <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- About Section -->
     <section id="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
             <div class="about-content">
                 <div class="about-text">
-                    <p>SDET with 3 years of experience in building scalable test automation frameworks, integrating tests into CI/CD pipelines, and enhancing software reliability through DevOps practices.</p>
-                    <p>Committed to continuous learning, innovation, and excellence in test automation, DevOps, and cloud-based automation. Passionate about scaling test automation frameworks and optimizing testing strategies for high-quality software delivery.</p>
+                    <p>I'm an experienced Software Development Engineer in Test (SDET) with 3 years of hands-on experience in building scalable test automation frameworks, integrating tests into CI/CD pipelines, and enhancing software reliability through DevOps practices.</p>
+                    <p>My passion lies in creating efficient, robust automated testing solutions that improve software quality while reducing manual effort. I'm committed to continuous learning, innovation, and excellence in test automation, DevOps, and cloud-based automation.</p>
+                    <p>Currently working at Capgemini in Pune, Maharashtra, I focus on scaling test automation frameworks and optimizing testing strategies for high-quality software delivery.</p>
+                </div>
+                <div class="about-skills">
+                    <div class="skill-tag"><i class="fas fa-laptop-code"></i> Test Automation</div>
+                    <div class="skill-tag"><i class="fas fa-exchange-alt"></i> API Testing</div>
+                    <div class="skill-tag"><i class="fas fa-mobile-alt"></i> Mobile Testing</div>
+                    <div class="skill-tag"><i class="fas fa-cloud"></i> Cloud Testing</div>
+                    <div class="skill-tag"><i class="fas fa-sync"></i> CI/CD & DevOps</div>
+                    <div class="skill-tag"><i class="fas fa-code"></i> Java</div>
+                    <div class="skill-tag"><i class="fab fa-python"></i> Python</div>
+                    <div class="skill-tag"><i class="fab fa-js"></i> JavaScript</div>
+                    <div class="skill-tag"><i class="fas fa-database"></i> SQL</div>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="experience">
+    
+    <!-- Skills Section -->
+    <section id="skills" style="background-color: #f8fafc;">
         <div class="container">
-            <h2 class="section-title">Professional Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Senior Software Engineer</h3>
-                        <h4>Capgemini, Pune, Maharashtra</h4>
-                        <p class="date">2022 - Present</p>
-                        <ul>
-                            <li>Designed and implemented scalable test automation frameworks with 80%+ test coverage.</li>
-                            <li>Automated 95% of regression testing, significantly reducing manual efforts and improving efficiency.</li>
-                            <li>Developed and maintained Java-based test automation for web, API, and mobile testing using Perfecto.</li>
-                            <li>Integrated automated tests into CI/CD pipelines (Jenkins, Azure DevOps), reducing deployment validation time by 30%.</li>
-                            <li>Developed REST API automation suites for 500+ backend services, ensuring stability and security.</li>
-                            <li>Enhanced flaky test reliability by 40% through improved automation practices.</li>
-                            <li>Applied system design principles to develop secure, scalable, and maintainable automation frameworks.</li>
-                            <li>Formulated and executed robust test strategies aligned with Agile best practices.</li>
-                            <li>Managed defect tracking and test execution using JIRA & Azure DevOps, reducing post-release defects by 30%.</li>
-                            <li>Actively contributed to Agile sprints with involvement in test planning, execution, and process refinement.</li>
-                        </ul>
+            <div class="section-title">
+                <h2>Technical Skills</h2>
+            </div>
+            <div class="projects-grid">
+                <!-- Test Automation -->
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Test Automation</h3>
+                        <p>Building scalable, maintainable test automation frameworks</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Selenium</span>
+                            <span class="tech-tag">Playwright</span>
+                            <span class="tech-tag">Cucumber</span>
+                            <span class="tech-tag">TestNG</span>
+                            <span class="tech-tag">Appium</span>
+                            <span class="tech-tag">Perfecto</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- API Testing -->
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #059669, #10b981);">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>API Testing</h3>
+                        <p>Comprehensive API testing for security and reliability</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">REST Assured</span>
+                            <span class="tech-tag">Postman</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">API Mocking</span>
+                            <span class="tech-tag">JSON</span>
+                            <span class="tech-tag">XML</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CI/CD & DevOps -->
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #d97706, #f59e0b);">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>CI/CD & DevOps</h3>
+                        <p>Automating deployment and testing in CI/CD pipelines</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Jenkins</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Git</span>
+                            <span class="tech-tag">Azure DevOps</span>
+                            <span class="tech-tag">GitHub Actions</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Programming -->
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #7c3aed, #8b5cf6);">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Programming</h3>
+                        <p>Strong coding skills across multiple languages</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Test Automation</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Selenium</span>
-                        <span class="skill-item">Playwright</span>
-                        <span class="skill-item">Cucumber</span>
-                        <span class="skill-item">TestNG</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>API Testing</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">REST Assured</span>
-                        <span class="skill-item">Postman</span>
-                        <span class="skill-item">REST API</span>
-                        <span class="skill-item">API Mocking</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Mobile Testing</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Appium</span>
-                        <span class="skill-item">Perfecto</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>CI/CD & DevOps</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Jenkins</span>
-                        <span class="skill-item">Docker</span>
-                        <span class="skill-item">Git</span>
-                        <span class="skill-item">Azure DevOps</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Cloud & Cross-Browser Testing</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Microsoft Azure</span>
-                        <span class="skill-item">LambdaTest</span>
-                        <span class="skill-item">SauceLabs</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Programming</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Java</span>
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">JavaScript</span>
-                        <span class="skill-item">SQL</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Agile & Project Management</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Scrum</span>
-                        <span class="skill-item">Kanban</span>
-                        <span class="skill-item">JIRA</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
+    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="project-cards">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <!-- CURA Healthcare Project -->
                 <div class="project-card">
-                    <div class="project-content">
+                    <div class="project-image">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="project-info">
                         <h3>CURA-Healthcare-Services-Solutions</h3>
-                        <p><a href="https://github.com/Mukuldev21/CURA-Healthcare-Services-Solutions" target="_blank">GitHub Repository</a></p>
-                        <ul>
-                            <li>Designed a Selenium-based automation framework with parallel execution, reducing test runtime by 40%.</li>
-                            <li>Implemented headless mode and cross-browser testing (Chrome, Firefox, Edge), ensuring 100% compatibility across environments.</li>
-                            <li>Integrated Extent Reports with detailed logs for each step, reducing debugging time by 50%.</li>
-                            <li>Utilized JSON-based data management, enhancing test scalability and maintainability by 60%.</li>
-                        </ul>
+                        <p>A Selenium-based automation framework for healthcare services with parallel execution, reducing test runtime by 40%.</p>
                         <div class="project-tech">
-                            <h4>Tools & Technologies:</h4>
-                            <p>Java21, Selenium WebDriver, TestNG, Maven, JSON, Extent Reports, Git</p>
+                            <span class="tech-tag">Java 21</span>
+                            <span class="tech-tag">Selenium WebDriver</span>
+                            <span class="tech-tag">TestNG</span>
+                            <span class="tech-tag">Maven</span>
+                            <span class="tech-tag">JSON</span>
+                            <span class="tech-tag">Extent Reports</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Mukuldev21/CURA-Healthcare-Services-Solutions" target="_blank" class="project-btn primary-btn">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                            <a href="#" class="project-btn secondary-btn">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
                         </div>
                     </div>
                 </div>
+                
+                <!-- SauceDemo Project -->
                 <div class="project-card">
-                    <div class="project-content">
+                    <div class="project-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-info">
                         <h3>SauceDemo-Playwright-Solution</h3>
-                        <p><a href="https://github.com/Mukuldev21/SauceDemo-Playwright-Solution" target="_blank">GitHub Repository</a></p>
-                        <ul>
-                            <li>Developed a robust Playwright automation framework that reduced test execution time by 65% compared to previous solutions.</li>
-                            <li>Implemented Page Object Model design pattern with Java that decreased code maintenance time by 40% and improved test readability.</li>
-                            <li>Features include parallel test execution, detailed HTML reports, and CI integration.</li>
-                            <li>Achieved 100% test coverage for critical user journeys including login, product browsing, cart management, and checkout processes.</li>
-                        </ul>
+                        <p>A robust Playwright automation framework with 65% faster execution compared to previous solutions.</p>
                         <div class="project-tech">
-                            <h4>Tools & Technologies:</h4>
-                            <p>Java21, Playwright, Git, TestNG, Allure-Reports, Jenkins</p>
+                            <span class="tech-tag">Java 21</span>
+                            <span class="tech-tag">Playwright</span>
+                            <span class="tech-tag">TestNG</span>
+                            <span class="tech-tag">Git</span>
+                            <span class="tech-tag">Allure Reports</span>
+                            <span class="tech-tag">Jenkins</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Mukuldev21/SauceDemo-Playwright-Solution" target="_blank" class="project-btn primary-btn">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                            <a href="#" class="project-btn secondary-btn">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="certifications">
+    
+    <!-- Experience Section -->
+    <section id="experience" style="background-color: #f8fafc;">
         <div class="container">
-            <h2 class="section-title">Certifications & Achievements</h2>
-            <div class="certifications-container">
-                <div class="certification">
-                    <i class="fas fa-award"></i>
-                    <h3>GEM Award Winner</h3>
-                    <p>Recognized for outstanding contributions to E2E Certificates (WTW), Capgemini (2024)</p>
-                </div>
-                <div class="certification">
-                    <i class="fas fa-certificate"></i>
-                    <h3>QA Automation Engineer Level 2</h3>
-                    <p>Ocean Certifications</p>
-                </div>
-                <div class="certification">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Agile Software Development Certification</h3>
-                </div>
-                <div class="certification">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Global Banking Level 2 Certification</h3>
+            <div class="section-title">
+                <h2>Work Experience</h2>
+            </div>
+            <div class="timeline">
+                <!-- Capgemini Experience -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2022 - Present</span>
+                        <h3>Senior Software Engineer</h3>
+                        <h4>Capgemini, Pune, Maharashtra</h4>
+                        <ul>
+                            <li>Designed and implemented scalable test automation frameworks with 80%+ test coverage.</li>
+                            <li>Automated 95% of regression testing, significantly reducing manual efforts.</li>
+                            <li>Developed REST API automation suites for 500+ backend services.</li>
+                            <li>Integrated automated tests into CI/CD pipelines, reducing deployment validation time by 30%.</li>
+                            <li>Enhanced flaky test reliability by 40% through improved automation practices.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-item">
-                <h3>Bachelor of Technology (B. Tech), Mechanical Engineering</h3>
-                <h4>Techno India College of Technology, Kolkata, West Bengal</h4>
-                <p class="date">2017-2021</p>
-            </div>
-        </div>
-    </section>
-
+    
+    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
-            <h2 class="section-title">Contact Me</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>Pune, Maharashtra</p>
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <a href="mailto:mukul.com12@gmail.com">mukul.com12@gmail.com</a>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <p><a href="mailto:mukul.com12@gmail.com">mukul.com12@gmail.com</a></p>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Phone</h3>
+                    <a href="tel:7033380645">7033380645</a>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <p>7033380645</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <p><a href="https://linkedin.com/in/mukul-dev-a02108198" target="_blank">linkedin.com/in/mukul-dev-a02108198</a></p>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <p><a href="https://github.com/Mukuldev21" target="_blank">github.com/Mukuldev21</a></p>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/mukul-dev-a02108198" target="_blank">Mukul Dev Mahato</a>
                 </div>
             </div>
         </div>
     </section>
-
+    
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Mukul Dev Mahato. All Rights Reserved.</p>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <p class="footer-text">&copy; 2025 Mukul Dev Mahato. All rights reserved.</p>
+            </div>
         </div>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
